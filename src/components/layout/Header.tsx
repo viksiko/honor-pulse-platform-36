@@ -90,13 +90,13 @@ const Header = () => {
               </DialogContent>
             </Dialog>
             <Link to="/login">
-              <Button className="honor-button-secondary flex items-center space-x-1">
+              <Button className="honor-button-primary flex items-center space-x-1">
                 <LogIn size={18} />
                 <span>Войти</span>
               </Button>
             </Link>
             <Link to="/register">
-              <Button className="honor-button-primary">Регистрация</Button>
+              <Button className="honor-button-secondary">Регистрация</Button>
             </Link>
           </div>
         </div>

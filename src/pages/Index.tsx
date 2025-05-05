@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Layout from '@/components/layout/Layout';
 import { Link } from 'react-router-dom';
@@ -17,13 +18,13 @@ const Index = () => {
                 Современная платформа для эффективного взаимодействия граждан с представителями власти
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/register">
-                  <Button className="bg-white text-honor-blue hover:bg-honor-gray rounded-xl px-6 py-2 text-lg">
+                <Link to="/register" className="w-full sm:w-48">
+                  <Button className="bg-white text-honor-blue hover:bg-honor-gray rounded-xl px-6 py-2 text-lg w-full">
                     Зарегистрироваться
                   </Button>
                 </Link>
-                <Link to="/map">
-                  <Button className="bg-transparent border border-white hover:bg-white/10 text-white rounded-xl px-6 py-2 text-lg">
+                <Link to="/map" className="w-full sm:w-48">
+                  <Button className="bg-transparent border border-white hover:bg-white/10 text-white rounded-xl px-6 py-2 text-lg w-full">
                     Карта округов
                   </Button>
                 </Link>
@@ -116,13 +117,13 @@ const Index = () => {
                   Зарегистрируйтесь сейчас и начните взаимодействовать с представителями власти
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link to="/register">
-                    <Button className="bg-white text-honor-blue hover:bg-honor-gray rounded-xl px-6 py-2 text-lg">
+                  <Link to="/register" className="w-full sm:w-48">
+                    <Button className="bg-white text-honor-blue hover:bg-honor-gray rounded-xl px-6 py-2 text-lg w-full">
                       Для избирателей
                     </Button>
                   </Link>
-                  <Link to="/register/representative">
-                    <Button className="bg-transparent border border-white hover:bg-white/10 text-white rounded-xl px-6 py-2 text-lg">
+                  <Link to="/register/representative" className="w-full sm:w-48">
+                    <Button className="bg-transparent border border-white hover:bg-white/10 text-white rounded-xl px-6 py-2 text-lg w-full">
                       Для представителей власти
                     </Button>
                   </Link>
