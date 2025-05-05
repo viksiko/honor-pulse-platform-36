@@ -19,15 +19,15 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/register" className="text-honor-darkGray hover:text-honor-blue">Регистрация</Link></li>
               <li><Link to="/map" className="text-honor-darkGray hover:text-honor-blue">Карта округов</Link></li>
-              <li><Link to="/tasks" className="text-honor-darkGray hover:text-honor-blue">Задания</Link></li>
+              <li><Link to="/tasks/create" className="text-honor-darkGray hover:text-honor-blue">Задания</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-bold mb-4">Для представителей</h3>
             <ul className="space-y-2">
-              <li><Link to="/representative/register" className="text-honor-darkGray hover:text-honor-blue">Регистрация</Link></li>
-              <li><Link to="/representative/profile" className="text-honor-darkGray hover:text-honor-blue">Личный кабинет</Link></li>
+              <li><Link to="/register/representative" className="text-honor-darkGray hover:text-honor-blue">Регистрация</Link></li>
+              <li><Link to="/representative/dashboard" className="text-honor-darkGray hover:text-honor-blue">Личный кабинет</Link></li>
               <li><Link to="/representative/tasks" className="text-honor-darkGray hover:text-honor-blue">Управление задачами</Link></li>
             </ul>
           </div>

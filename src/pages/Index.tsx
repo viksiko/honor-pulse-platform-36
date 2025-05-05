@@ -19,19 +19,19 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/register">
-                  <Button className="bg-white text-honor-blue hover:bg-honor-gray rounded-xl shadow-button px-6 py-2 text-lg">
+                  <Button className="bg-white text-honor-blue hover:bg-honor-gray rounded-xl px-6 py-2 text-lg">
                     Зарегистрироваться
                   </Button>
                 </Link>
                 <Link to="/map">
-                  <Button className="bg-transparent border border-white hover:bg-white/10 text-white rounded-xl shadow-button px-6 py-2 text-lg">
+                  <Button className="bg-transparent border border-white hover:bg-white/10 text-white rounded-xl px-6 py-2 text-lg">
                     Карта округов
                   </Button>
                 </Link>
               </div>
             </div>
             <div className="hidden md:block">
-              <img src="/placeholder.svg" alt="Платформа Честь" className="w-full max-w-md mx-auto rounded-xl shadow-3d" />
+              <img src="/placeholder.svg" alt="Платформа Честь" className="w-full max-w-md mx-auto rounded-xl" />
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Возможности платформы</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="honor-card flex flex-col items-center text-center p-8">
+            <Link to="/map" className="honor-card flex flex-col items-center text-center p-8 hover:bg-gray-50 transition-colors">
               <div className="bg-honor-blue/10 p-4 rounded-full mb-4">
                 <MapPinIcon size={32} className="text-honor-blue" />
               </div>
@@ -51,9 +51,9 @@ const Index = () => {
               <p className="text-honor-darkGray">
                 Интерактивная карта избирательных округов с информацией о представителях власти
               </p>
-            </div>
+            </Link>
             
-            <div className="honor-card flex flex-col items-center text-center p-8">
+            <Link to="/representatives" className="honor-card flex flex-col items-center text-center p-8 hover:bg-gray-50 transition-colors">
               <div className="bg-honor-blue/10 p-4 rounded-full mb-4">
                 <Building size={32} className="text-honor-blue" />
               </div>
@@ -61,9 +61,9 @@ const Index = () => {
               <p className="text-honor-darkGray">
                 Публичные профили представителей власти с информацией о выполненных задачах
               </p>
-            </div>
+            </Link>
             
-            <div className="honor-card flex flex-col items-center text-center p-8">
+            <Link to="/tasks/create" className="honor-card flex flex-col items-center text-center p-8 hover:bg-gray-50 transition-colors">
               <div className="bg-honor-blue/10 p-4 rounded-full mb-4">
                 <CheckIcon size={32} className="text-honor-blue" />
               </div>
@@ -71,7 +71,7 @@ const Index = () => {
               <p className="text-honor-darkGray">
                 Возможность создавать задания для представителей власти и отслеживать их выполнение
               </p>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -88,12 +88,12 @@ const Index = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link to="/register">
-                    <Button className="bg-white text-honor-blue hover:bg-honor-gray rounded-xl shadow-button px-6 py-2 text-lg">
+                    <Button className="bg-white text-honor-blue hover:bg-honor-gray rounded-xl px-6 py-2 text-lg">
                       Зарегистрироваться как избиратель
                     </Button>
                   </Link>
-                  <Link to="/representative/register">
-                    <Button className="bg-transparent border border-white hover:bg-white/10 text-white rounded-xl shadow-button px-6 py-2 text-lg">
+                  <Link to="/register/representative">
+                    <Button className="bg-transparent border border-white hover:bg-white/10 text-white rounded-xl px-6 py-2 text-lg">
                       Для представителей власти
                     </Button>
                   </Link>
