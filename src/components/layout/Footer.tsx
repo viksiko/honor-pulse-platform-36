@@ -20,6 +20,7 @@ const Footer = () => {
               <li><Link to="/register" className="text-honor-darkGray hover:text-honor-blue">Регистрация</Link></li>
               <li><Link to="/map" className="text-honor-darkGray hover:text-honor-blue">Карта округов</Link></li>
               <li><Link to="/tasks/create" className="text-honor-darkGray hover:text-honor-blue">Задания</Link></li>
+              <li><Link to="/blog" className="text-honor-darkGray hover:text-honor-blue">Новости округов</Link></li>
             </ul>
           </div>
           
@@ -29,6 +30,7 @@ const Footer = () => {
               <li><Link to="/register/representative" className="text-honor-darkGray hover:text-honor-blue">Регистрация</Link></li>
               <li><Link to="/representative/dashboard" className="text-honor-darkGray hover:text-honor-blue">Личный кабинет</Link></li>
               <li><Link to="/representative/tasks" className="text-honor-darkGray hover:text-honor-blue">Управление задачами</Link></li>
+              <li><Link to="/representative/statistics" className="text-honor-darkGray hover:text-honor-blue">Статистика и отчеты</Link></li>
             </ul>
           </div>
           
@@ -36,6 +38,11 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Контакты</h3>
             <p className="text-honor-darkGray">support@honor-platform.ru</p>
             <p className="text-honor-darkGray">+7 (800) 123-45-67</p>
+            <div className="mt-4">
+              <Link to="/messages" className="text-honor-blue hover:underline">
+                Центр сообщений
+              </Link>
+            </div>
           </div>
         </div>
         

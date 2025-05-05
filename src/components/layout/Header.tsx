@@ -2,7 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { User, MapPin, Plus, LogIn } from 'lucide-react';
+import { User, MapPin, Plus, LogIn, Bell } from 'lucide-react';
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogTrigger 
+} from '@/components/ui/dialog';
 
 const Header = () => {
   return (
@@ -31,6 +38,48 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center space-x-4">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="ghost" size="icon" className="relative">
+                  <Bell size={20} />
+                  <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Подписки и уведомления</DialogTitle>
+                </DialogHeader>
+                <div className="py-4">
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-sm font-medium">Вы подписаны на следующие округа:</h3>
+                      <div className="mt-2 space-y-2">
+                        <div className="flex justify-between items-center p-2 bg-honor-gray rounded">
+                          <div className="flex items-center">
+                            <MapPin size={16} className="text-honor-blue mr-2" />
+                            <span>Округ №3</span>
+                          </div>
+                          <Button variant="ghost" size="sm">Отписаться</Button>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-medium">Последние уведомления:</h3>
+                      <div className="mt-2 space-y-2">
+                        <div className="p-2 bg-honor-gray rounded">
+                          <p className="text-sm font-medium">Новое задание в Округе №3</p>
+                          <p className="text-xs text-honor-darkGray">15 минут назад</p>
+                        </div>
+                        <div className="p-2 bg-honor-gray rounded">
+                          <p className="text-sm font-medium">Встреча с жителями перенесена</p>
+                          <p className="text-xs text-honor-darkGray">2 часа назад</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </DialogContent>
+            </Dialog>
             <Link to="/login">
               <Button className="honor-button-secondary flex items-center space-x-1">
                 <LogIn size={18} />
