@@ -7,7 +7,7 @@ import { Avatar } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ThumbsUp, MessageSquare, MapPin, Building, Calendar, Clock, User } from 'lucide-react';
+import { ThumbsUp, MessageSquare, MapPin, Building, Calendar, Clock, User, Mail, Phone } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
 // Mock data
