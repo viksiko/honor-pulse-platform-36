@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { User, MapPin, Plus, LogIn, Bell } from 'lucide-react';
+import { User, MapPin, Plus, LogIn, Bell, Ticket } from 'lucide-react';
 import { 
   Dialog, 
   DialogContent, 
@@ -12,6 +12,9 @@ import {
 } from '@/components/ui/dialog';
 
 const Header = () => {
+  // Mock ticket count - in a real app, this would come from user state
+  const ticketCount = 35;
+
   return (
     <header className="bg-white shadow-sm">
       <div className="honor-container py-4">
@@ -38,6 +41,12 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center space-x-4">
+            {/* Ticket indicator */}
+            <Link to="/balance" className="flex items-center px-3 py-1 rounded-full bg-honor-gray hover:bg-honor-blue/10 transition-colors">
+              <Ticket size={16} className="text-honor-blue mr-1" />
+              <span className="text-sm font-medium">{ticketCount}</span>
+            </Link>
+
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" size="icon" className="relative">
