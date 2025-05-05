@@ -15,12 +15,17 @@ const NotFound = () => {
           <p className="text-honor-darkGray mb-8">
             Извините, но страница, которую вы ищете, не существует или была перемещена.
           </p>
-          <Link to="/">
-            <Button className="flex items-center bg-honor-blue hover:bg-honor-darkBlue text-white">
-              <Home size={18} className="mr-2" />
-              Вернуться на главную
-            </Button>
-          </Link>
+          <div className="flex justify-center">
+            <Link to="/">
+              <Button className="flex items-center bg-honor-blue hover:bg-honor-darkBlue text-white">
+                <Home size={18} className="mr-2" />
+                Вернуться на главную
+              </Button>
+            </Link>
+          </div>
+          <div className="mt-6 text-sm text-honor-darkGray">
+            <p>Если вы искали страницу управления задачами, перейдите в <Link to="/representative/tasks" className="text-honor-blue hover:underline">личный кабинет представителя</Link>.</p>
+          </div>
         </div>
       </div>
     </Layout>
