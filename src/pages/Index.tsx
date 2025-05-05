@@ -1,9 +1,8 @@
-
 import React from 'react';
 import Layout from '@/components/layout/Layout';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { UserIcon, Building, Users, MapPinIcon, CheckIcon, Star, MessageSquare, Ticket, Edit } from 'lucide-react';
+import { UserIcon, Building, Users, MapPinIcon, CheckIcon, Star, MessageSquare, Ticket } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -100,16 +99,6 @@ const Index = () => {
               <h3 className="text-xl font-bold mb-2">Система билетов</h3>
               <p className="text-honor-darkGray">
                 Система поощрений и вознаграждений за активность на платформе
-              </p>
-            </Link>
-
-            <Link to="/blog" className="honor-card flex flex-col items-center text-center p-8 hover:bg-gray-50 transition-colors">
-              <div className="bg-honor-blue/10 p-4 rounded-full mb-4">
-                <Edit size={32} className="text-honor-blue" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Блоги представителей</h3>
-              <p className="text-honor-darkGray">
-                Личные блоги представителей власти с новостями и информацией для избирателей
               </p>
             </Link>
           </div>
