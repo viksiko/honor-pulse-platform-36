@@ -31,19 +31,25 @@ const Register = () => {
 
   const handleSubmitStep1 = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, validate fields before proceeding
+    // В реальном приложении здесь был бы запрос на отправку кода верификации
+    toast({
+      title: "Код подтверждения отправлен",
+      description: "Мы отправили код подтверждения на указанный вами номер телефона",
+      variant: "default",
+    });
     setStep(2);
   };
 
   const handleSubmitStep2 = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, handle verification and submission to backend
+    // В реальном приложении здесь была бы проверка кода верификации и регистрация пользователя
     toast({
       title: "Регистрация успешна!",
-      description: "Вы успешно зарегистрировались на платформе.",
+      description: "Вы успешно зарегистрировались на платформе. Вам начислено 10 билетов!",
       variant: "default",
     });
-    // Redirect to user dashboard would happen here
+    // В реальном приложении здесь был бы редирект на dashboard
+    window.location.href = '/dashboard';
   };
 
   return (
@@ -130,6 +136,9 @@ const Register = () => {
                       placeholder="Город, улица, дом"
                       required={formData.useAddress}
                     />
+                    <p className="text-xs text-honor-darkGray mt-1">
+                      Система автоматически определит ваш избирательный участок
+                    </p>
                   </div>
                 ) : (
                   <div className="relative">
@@ -150,6 +159,10 @@ const Register = () => {
               <Button type="submit" className="w-full honor-button-primary">
                 Продолжить
               </Button>
+
+              <div className="mt-4 text-xs text-honor-darkGray text-center">
+                Нажимая "Продолжить", вы соглашаетесь с правилами использования платформы и даете согласие на обработку персональных данных
+              </div>
             </form>
           ) : (
             <form onSubmit={handleSubmitStep2} className="honor-card">
@@ -173,6 +186,12 @@ const Register = () => {
                   maxLength={6}
                   required
                 />
+                <div className="flex justify-between mt-2 text-sm">
+                  <button type="button" className="text-honor-blue hover:underline">
+                    Отправить код повторно
+                  </button>
+                  <span className="text-honor-darkGray">00:59</span>
+                </div>
               </div>
 
               <Button type="submit" className="w-full honor-button-primary mb-4">

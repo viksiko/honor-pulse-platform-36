@@ -20,6 +20,7 @@ import Dashboard from "./pages/Dashboard";
 import Blog from "./pages/Blog";
 import MessageCenter from "./pages/MessageCenter";
 import RepresentativeDashboard from "./pages/RepresentativeDashboard";
+import RepresentativeRegister from "./pages/RepresentativeRegister";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/register/representative" element={<RepresentativeRegister />} />
           <Route path="/map" element={<Map />} />
           <Route path="/representatives" element={<Representatives />} />
           <Route path="/representative/profile/:id" element={<RepresentativeProfile />} />

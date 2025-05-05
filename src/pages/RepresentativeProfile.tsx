@@ -1,13 +1,13 @@
 
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ThumbsUp, MessageSquare, MapPin, Building, Calendar, Clock, User, Mail, Phone } from 'lucide-react';
+import { ThumbsUp, MessageSquare, MapPin, Building, Calendar, Clock, User, Mail, Phone, Eye } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
 // Mock data
@@ -20,6 +20,10 @@ const mockTasks = [
     solution: "Выделены средства из бюджета, составлен план работ",
     status: "in-progress",
     date: "2025-08-15",
+    modified: "2025-05-05",
+    modificationHistory: [
+      { field: "solution", oldValue: "Изучаем возможности ремонта", newValue: "Выделены средства из бюджета, составлен план работ", date: "2025-05-05" }
+    ],
     stages: [
       { id: 1, title: "Выделение средств", completed: true, date: "2025-05-10" },
       { id: 2, title: "Проведение конкурса подрядчиков", completed: true, date: "2025-06-20" },
@@ -27,7 +31,8 @@ const mockTasks = [
       { id: 4, title: "Завершение работ", completed: false, date: "2025-08-15" }
     ],
     likes: 24,
-    comments: 5
+    comments: 5,
+    views: 156
   },
   {
     id: 2,
@@ -37,6 +42,8 @@ const mockTasks = [
     solution: "Проект согласован с жителями, выбрано оборудование",
     status: "completed",
     date: "2025-04-20",
+    modified: null,
+    modificationHistory: [],
     stages: [
       { id: 1, title: "Согласование с жителями", completed: true, date: "2025-02-10" },
       { id: 2, title: "Выбор оборудования", completed: true, date: "2025-02-25" },
@@ -44,7 +51,8 @@ const mockTasks = [
       { id: 4, title: "Установка оборудования", completed: true, date: "2025-04-10" }
     ],
     likes: 56,
-    comments: 12
+    comments: 12,
+    views: 230
   },
   {
     id: 3,
@@ -54,6 +62,11 @@ const mockTasks = [
     solution: "Определены виды деревьев, закуплены саженцы",
     status: "planned",
     date: "2025-09-30",
+    modified: "2025-05-02",
+    modificationHistory: [
+      { field: "stages", oldValue: "3 этапа", newValue: "4 этапа", date: "2025-05-02" },
+      { field: "date", oldValue: "2025-08-30", newValue: "2025-09-30", date: "2025-05-01" }
+    ],
     stages: [
       { id: 1, title: "Разработка плана озеленения", completed: true, date: "2025-04-15" },
       { id: 2, title: "Закупка саженцев", completed: false, date: "2025-05-20" },
@@ -61,7 +74,8 @@ const mockTasks = [
       { id: 4, title: "Высадка растений", completed: false, date: "2025-09-15" }
     ],
     likes: 38,
-    comments: 8
+    comments: 8,
+    views: 142
   }
 ];
 
@@ -78,24 +92,30 @@ const mockRepresentative = {
   contactEmail: "ivanov@duma.ru",
   contactPhone: "+7 (123) 456-78-90",
   officeAddress: "ул. Советская, 25, каб. 301",
+  achievementBadges: [
+    { id: 1, name: "10 выполненных задач", icon: "star" },
+    { id: 2, name: "Высокий рейтинг", icon: "award" }
+  ]
 };
 
 const mockPosts = [
   {
     id: 1,
     title: "Отчет о проделанной работе за первый квартал",
-    content: "За первый квартал 2025 года нам удалось реализовать несколько важных проектов...",
+    content: "За первый квартал 2025 года нам удалось реализовать несколько важных проектов, включая ремонт дороги на улице Ленина и установку новой детской площадки. Все работы были выполнены в срок и в рамках выделенного бюджета. Мы продолжаем активно работать над улучшением качества жизни в нашем округе.",
     date: "2025-04-01",
     likes: 42,
-    comments: 7
+    comments: 7,
+    views: 230
   },
   {
     id: 2,
     title: "Встреча с жителями микрорайона",
-    content: "Вчера провел встречу с жителями микрорайона. Обсудили насущные проблемы...",
+    content: "Вчера провел встречу с жителями микрорайона. Обсудили насущные проблемы, в том числе: необходимость ремонта внутридворовых проездов, организацию парковочных мест, установку детских площадок. По результатам встречи принято решение о разработке комплексного плана благоустройства территории на ближайшие 2 года.",
     date: "2025-05-01",
     likes: 35,
-    comments: 9
+    comments: 9,
+    views: 187
   }
 ];
 
@@ -103,15 +123,16 @@ const RepresentativeProfile = () => {
   const { id } = useParams();
   const { toast } = useToast();
   const [liked, setLiked] = useState<Record<string, boolean>>({});
+  const [showModifications, setShowModifications] = useState<number | null>(null);
 
-  const handleLike = (taskId: number) => {
-    const taskKey = `task-${taskId}`;
-    if (liked[taskKey]) return;
+  const handleLike = (type: string, id: number) => {
+    const key = `${type}-${id}`;
+    if (liked[key]) return;
     
-    setLiked({...liked, [taskKey]: true});
+    setLiked({...liked, [key]: true});
     toast({
       title: "Реакция учтена",
-      description: "Вы оценили задачу положительно",
+      description: "Вы оценили публикацию положительно",
       variant: "default",
     });
   };
@@ -168,6 +189,12 @@ const RepresentativeProfile = () => {
                   <span className="text-sm">{mockRepresentative.district}</span>
                 </div>
                 <Badge className="mt-2 bg-honor-blue">{mockRepresentative.party}</Badge>
+                
+                {mockRepresentative.achievementBadges.map(badge => (
+                  <Badge key={badge.id} className="mt-2 bg-green-100 text-green-800">
+                    {badge.name}
+                  </Badge>
+                ))}
               </div>
 
               <div className="border-t border-b py-4 mb-4">
@@ -215,7 +242,7 @@ const RepresentativeProfile = () => {
                   Подписаться
                 </Button>
                 <Button className="honor-button-secondary" onClick={handleSendMessage}>
-                  Написать сообщение
+                  Написать сообщение (10 билетов)
                 </Button>
               </div>
             </div>
@@ -234,10 +261,41 @@ const RepresentativeProfile = () => {
                   <Card key={task.id} className="honor-card">
                     <div className="flex justify-between items-start mb-4">
                       <h2 className="text-xl font-bold">{task.title}</h2>
-                      <Badge className={getStatusColor(task.status)}>
-                        {getStatusText(task.status)}
-                      </Badge>
+                      <div className="flex items-center">
+                        {task.modified && (
+                          <button 
+                            onClick={() => setShowModifications(showModifications === task.id ? null : task.id)}
+                            className="mr-2 text-honor-darkGray hover:text-honor-blue"
+                            title="Показать историю изменений"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-tool">
+                              <path d="M14.5 12.5 7 20l-3-3 7.5-7.5"/>
+                              <path d="M16 12V4H8"/>
+                              <path d="M17 13a4 4 0 0 0 0 8 4 4 0 0 0 0-8"/>
+                            </svg>
+                          </button>
+                        )}
+                        <Badge className={getStatusColor(task.status)}>
+                          {getStatusText(task.status)}
+                        </Badge>
+                      </div>
                     </div>
+                    
+                    {showModifications === task.id && task.modificationHistory.length > 0 && (
+                      <div className="mb-4 bg-gray-50 p-3 rounded-lg text-sm">
+                        <h3 className="font-semibold mb-2">История изменений:</h3>
+                        <ul className="space-y-2">
+                          {task.modificationHistory.map((mod, idx) => (
+                            <li key={idx} className="text-honor-darkGray">
+                              <span className="font-medium">{new Date(mod.date).toLocaleDateString('ru-RU')}</span> - 
+                              Поле "<span className="italic">{mod.field}</span>" изменено с 
+                              "<span className="line-through">{mod.oldValue}</span>" на 
+                              "<span className="font-medium">{mod.newValue}</span>"
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                     
                     <div className="flex items-center text-honor-darkGray text-sm mb-4">
                       <MapPin size={16} className="mr-1" />
@@ -277,7 +335,7 @@ const RepresentativeProfile = () => {
                       <div className="flex space-x-4">
                         <button 
                           className={`flex items-center space-x-1 ${liked[`task-${task.id}`] ? 'text-honor-blue' : 'text-honor-darkGray hover:text-honor-blue'}`}
-                          onClick={() => handleLike(task.id)}
+                          onClick={() => handleLike('task', task.id)}
                           disabled={liked[`task-${task.id}`]}
                         >
                           <ThumbsUp size={18} />
@@ -286,6 +344,10 @@ const RepresentativeProfile = () => {
                         <div className="flex items-center space-x-1 text-honor-darkGray">
                           <MessageSquare size={18} />
                           <span>{task.comments}</span>
+                        </div>
+                        <div className="flex items-center space-x-1 text-honor-darkGray">
+                          <Eye size={18} />
+                          <span>{task.views}</span>
                         </div>
                       </div>
                       <span className="text-sm text-honor-darkGray">
@@ -305,24 +367,42 @@ const RepresentativeProfile = () => {
                       <Calendar size={16} className="inline mr-1" />
                       {new Date(post.date).toLocaleDateString('ru-RU')}
                     </p>
-                    <p className="text-honor-darkGray mb-4">{post.content}</p>
+                    <p className="text-honor-darkGray mb-4">{post.content.substring(0, 200)}...</p>
                     <div className="flex justify-between items-center pt-3 border-t">
                       <div className="flex space-x-4">
-                        <div className="flex items-center space-x-1 text-honor-darkGray">
+                        <button 
+                          className={`flex items-center space-x-1 ${liked[`post-${post.id}`] ? 'text-honor-blue' : 'text-honor-darkGray hover:text-honor-blue'}`}
+                          onClick={() => handleLike('post', post.id)}
+                          disabled={liked[`post-${post.id}`]}
+                        >
                           <ThumbsUp size={18} />
-                          <span>{post.likes}</span>
-                        </div>
+                          <span>{liked[`post-${post.id}`] ? post.likes + 1 : post.likes}</span>
+                        </button>
                         <div className="flex items-center space-x-1 text-honor-darkGray">
                           <MessageSquare size={18} />
                           <span>{post.comments}</span>
                         </div>
+                        <div className="flex items-center space-x-1 text-honor-darkGray">
+                          <Eye size={18} />
+                          <span>{post.views}</span>
+                        </div>
                       </div>
-                      <Button variant="link" className="text-honor-blue p-0">
-                        Читать полностью
-                      </Button>
+                      <Link to={`/blog/${post.id}`}>
+                        <Button variant="link" className="text-honor-blue p-0">
+                          Читать полностью
+                        </Button>
+                      </Link>
                     </div>
                   </Card>
                 ))}
+                
+                <div className="text-center mt-8">
+                  <Link to={`/representative/${id}/blog`}>
+                    <Button className="honor-button-secondary">
+                      Все публикации
+                    </Button>
+                  </Link>
+                </div>
               </TabsContent>
             </Tabs>
           </div>

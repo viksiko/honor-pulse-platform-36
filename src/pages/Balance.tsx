@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Wallet, CreditCard, Share2, Award, Plus, Clock, CheckCircle, ThumbsUp, MessageSquare, User, Minus } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
-// Mock data
+// Mock data for transactions
 const mockTransactions = [
   { id: 1, type: 'earn', description: 'Регистрация на платформе', amount: 10, date: '2025-05-01' },
   { id: 2, type: 'earn', description: 'Приглашённый друг', amount: 10, date: '2025-05-02' },
@@ -18,6 +18,9 @@ const mockTransactions = [
   { id: 4, type: 'earn', description: 'Просмотр рекламы', amount: 1, date: '2025-05-04' },
   { id: 5, type: 'earn', description: '5 лайков на посты', amount: 1, date: '2025-05-04' },
   { id: 6, type: 'spend', description: 'Сообщение представителю', amount: -10, date: '2025-05-05' },
+  { id: 7, type: 'earn', description: 'Новая подписка', amount: 3, date: '2025-05-05' },
+  { id: 8, type: 'earn', description: 'Комментарий к посту', amount: 1, date: '2025-05-05' },
+  { id: 9, type: 'earn', description: 'Ежедневный вход', amount: 1, date: '2025-05-05' },
 ];
 
 const Balance = () => {
@@ -142,6 +145,9 @@ const Balance = () => {
                       <Share2 size={16} />
                     </Button>
                   </div>
+                  <p className="text-xs text-honor-darkGray mt-2">
+                    Пригласите друга и получите 10 билетов
+                  </p>
                 </div>
               </div>
             </Card>
@@ -153,6 +159,7 @@ const Balance = () => {
               <TabsList className="mb-6 bg-honor-gray">
                 <TabsTrigger value="purchase" className="flex-1">Пополнение</TabsTrigger>
                 <TabsTrigger value="history" className="flex-1">История</TabsTrigger>
+                <TabsTrigger value="usage" className="flex-1">Расходы</TabsTrigger>
               </TabsList>
               
               <TabsContent value="purchase">
@@ -275,6 +282,42 @@ const Balance = () => {
                           </div>
                         </div>
                       ))}
+                    </div>
+                  </div>
+                </Card>
+              </TabsContent>
+              
+              <TabsContent value="usage">
+                <Card className="honor-card">
+                  <div className="p-6">
+                    <h2 className="text-xl font-bold mb-6">Как использовать билеты</h2>
+                    
+                    <div className="space-y-6">
+                      <div className="border rounded-xl p-4">
+                        <div className="flex items-center mb-2">
+                          <MessageSquare size={20} className="text-honor-blue mr-2" />
+                          <h3 className="text-lg font-semibold">Написать представителю власти</h3>
+                        </div>
+                        <p className="text-honor-darkGray mb-2">
+                          Отправка личного сообщения любому представителю власти стоит 10 билетов.
+                        </p>
+                        <p className="text-sm text-honor-darkGray">
+                          Вы получите уведомление, когда представитель власти прочитает ваше сообщение.
+                        </p>
+                      </div>
+                      
+                      <div className="border rounded-xl p-4">
+                        <div className="flex items-center mb-2">
+                          <MapPin size={20} className="text-honor-blue mr-2" />
+                          <h3 className="text-lg font-semibold">Создать задание</h3>
+                        </div>
+                        <p className="text-honor-darkGray mb-2">
+                          Создание нового задания для решения проблемы стоит 10 билетов.
+                        </p>
+                        <p className="text-sm text-honor-darkGray">
+                          Ваше задание будет видно всем пользователям платформы и представителям власти вашего округа.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </Card>
