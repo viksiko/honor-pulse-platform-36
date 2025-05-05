@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Wallet, CreditCard, Share2, Award, Plus, Clock, CheckCircle, ThumbsUp, MessageSquare, User, Minus } from 'lucide-react';
+import { Wallet, CreditCard, Share2, Award, Plus, Clock, CheckCircle, ThumbsUp, MessageSquare, User, Minus, MapPin } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
 // Mock data for transactions
