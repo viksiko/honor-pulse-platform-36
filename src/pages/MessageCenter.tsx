@@ -11,7 +11,8 @@ import {
   Search, 
   Send, 
   Clock,
-  Plus
+  Plus,
+  MessageSquare
 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
