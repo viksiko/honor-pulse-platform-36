@@ -3,7 +3,7 @@ import React from 'react';
 import Layout from '@/components/layout/Layout';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { UserIcon, Building, Users, MapPinIcon, CheckIcon } from 'lucide-react';
+import { UserIcon, Building, Users, MapPinIcon, CheckIcon, Star, MessageSquare, Ticket, Edit } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -72,6 +72,46 @@ const Index = () => {
                 Возможность создавать задания для представителей власти и отслеживать их выполнение
               </p>
             </Link>
+
+            <Link to="/representatives" className="honor-card flex flex-col items-center text-center p-8 hover:bg-gray-50 transition-colors">
+              <div className="bg-honor-blue/10 p-4 rounded-full mb-4">
+                <Star size={32} className="text-honor-blue" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Рейтинг представителей</h3>
+              <p className="text-honor-darkGray">
+                Автоматически формируемый рейтинг представителей власти на основе выполненных задач
+              </p>
+            </Link>
+
+            <Link to="/messages" className="honor-card flex flex-col items-center text-center p-8 hover:bg-gray-50 transition-colors">
+              <div className="bg-honor-blue/10 p-4 rounded-full mb-4">
+                <MessageSquare size={32} className="text-honor-blue" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Прямая коммуникация</h3>
+              <p className="text-honor-darkGray">
+                Возможность напрямую общаться с представителями власти через систему сообщений
+              </p>
+            </Link>
+
+            <Link to="/balance" className="honor-card flex flex-col items-center text-center p-8 hover:bg-gray-50 transition-colors">
+              <div className="bg-honor-blue/10 p-4 rounded-full mb-4">
+                <Ticket size={32} className="text-honor-blue" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Система билетов</h3>
+              <p className="text-honor-darkGray">
+                Система поощрений и вознаграждений за активность на платформе
+              </p>
+            </Link>
+
+            <Link to="/blog" className="honor-card flex flex-col items-center text-center p-8 hover:bg-gray-50 transition-colors">
+              <div className="bg-honor-blue/10 p-4 rounded-full mb-4">
+                <Edit size={32} className="text-honor-blue" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Блоги представителей</h3>
+              <p className="text-honor-darkGray">
+                Личные блоги представителей власти с новостями и информацией для избирателей
+              </p>
+            </Link>
           </div>
         </div>
       </section>
@@ -89,7 +129,7 @@ const Index = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link to="/register">
                     <Button className="bg-white text-honor-blue hover:bg-honor-gray rounded-xl px-6 py-2 text-lg">
-                      Зарегистрироваться как избиратель
+                      Для избирателей
                     </Button>
                   </Link>
                   <Link to="/register/representative">
@@ -115,7 +155,7 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="honor-card flex flex-col items-center text-center p-6">
               <span className="text-4xl font-bold text-honor-blue mb-2">1,000+</span>
-              <p className="text-honor-darkGray">Зарегистрированных пользователей</p>
+              <p className="text-honor-darkGray">Активных пользователей</p>
             </div>
             
             <div className="honor-card flex flex-col items-center text-center p-6">
