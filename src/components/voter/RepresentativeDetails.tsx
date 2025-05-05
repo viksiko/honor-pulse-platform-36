@@ -30,6 +30,20 @@ const RepresentativeDetails = ({
   handleSubmit,
   goBack
 }: RepresentativeDetailsProps) => {
+  // Function to clear the file input
+  const clearFileInput = () => {
+    // Create a new FileList-like object with no files
+    const dataTransfer = new DataTransfer();
+    
+    // Create a real input element to dispatch a change event from
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.files = dataTransfer.files;
+    
+    // Use the actual handleFileChange with a real change event
+    handleFileChange({ target: fileInput } as React.ChangeEvent<HTMLInputElement>);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="honor-card">
       <h2 className="text-xl font-bold mb-6">Информация о представителе</h2>
@@ -114,7 +128,7 @@ const RepresentativeDetails = ({
                 type="button" 
                 variant="outline" 
                 className="mt-2"
-                onClick={() => handleFileChange({ target: { files: [] } } as React.ChangeEvent<HTMLInputElement>)}
+                onClick={clearFileInput}
               >
                 Заменить файл
               </Button>
