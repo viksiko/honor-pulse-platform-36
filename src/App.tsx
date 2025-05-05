@@ -15,6 +15,12 @@ import TaskCreate from "./pages/TaskCreate";
 import Balance from "./pages/Balance";
 import NotFound from "./pages/NotFound";
 
+// New pages
+import Dashboard from "./pages/Dashboard";
+import Blog from "./pages/Blog";
+import MessageCenter from "./pages/MessageCenter";
+import RepresentativeDashboard from "./pages/RepresentativeDashboard";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -32,6 +38,14 @@ const App = () => (
           <Route path="/representative/profile/:id" element={<RepresentativeProfile />} />
           <Route path="/tasks/create" element={<TaskCreate />} />
           <Route path="/balance" element={<Balance />} />
+          
+          {/* New routes */}
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<Blog />} />
+          <Route path="/messages" element={<MessageCenter />} />
+          <Route path="/representative/dashboard" element={<RepresentativeDashboard />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
