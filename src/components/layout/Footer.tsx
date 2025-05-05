@@ -19,7 +19,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/register" className="text-honor-darkGray hover:text-honor-blue">Регистрация</Link></li>
               <li><Link to="/map" className="text-honor-darkGray hover:text-honor-blue">Карта округов</Link></li>
-              <li><Link to="/tasks/create" className="text-honor-darkGray hover:text-honor-blue">Задания</Link></li>
+              <li><Link to="/tasks/create" className="text-honor-darkGray hover:text-honor-blue">Создать задание</Link></li>
               <li><Link to="/blog" className="text-honor-darkGray hover:text-honor-blue">Новости округов</Link></li>
             </ul>
           </div>

@@ -101,7 +101,7 @@
   }
 
   .honor-card {
-    @apply bg-white rounded-xl border p-6;
+    @apply bg-white rounded-xl border p-6 shadow-sm;
   }
 
   .honor-input {
@@ -126,5 +126,10 @@
   
   .rep-card {
     @apply flex items-center p-3 border rounded-xl hover:bg-honor-gray transition-colors;
+  }
+  
+  /* Fix for dialog component description issue */
+  .dialog-description {
+    @apply text-sm text-muted-foreground;
   }
 }

@@ -16,7 +16,7 @@ const NotFound = () => {
             Извините, но страница, которую вы ищете, не существует или была перемещена.
           </p>
           <Link to="/">
-            <Button className="honor-button-primary flex items-center">
+            <Button className="flex items-center bg-honor-blue hover:bg-honor-darkBlue text-white">
               <Home size={18} className="mr-2" />
               Вернуться на главную
             </Button>
