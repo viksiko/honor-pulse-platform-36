@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -79,8 +78,7 @@ export default {
 				xl: '16px',
 			},
 			boxShadow: {
-				'3d': '4px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-				'button': '4px 4px 4px 8px rgba(0, 0, 0, 0.08)',
+				'button': '0px 1px 2px rgba(0, 0, 0, 0.05)',
 			},
 			keyframes: {
 				'accordion-down': {
