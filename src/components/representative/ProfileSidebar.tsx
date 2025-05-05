@@ -10,7 +10,6 @@ import {
   MapPin, 
   MessageSquare, 
   Plus,
-  Edit,
   Settings
 } from 'lucide-react';
 
@@ -54,12 +53,6 @@ const ProfileSidebar = () => {
             <Button className="w-full honor-button-primary flex items-center justify-center">
               <Plus size={18} className="mr-2" />
               Создать новую задачу
-            </Button>
-          </Link>
-          <Link to="/blog">
-            <Button className="w-full honor-button-secondary flex items-center justify-center">
-              <Edit size={18} className="mr-2" />
-              Написать в блог
             </Button>
           </Link>
           <Link to="/messages">
