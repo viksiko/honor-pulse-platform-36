@@ -96,7 +96,7 @@ const Header = () => {
               </Button>
             </Link>
             <Link to="/register">
-              <Button className="honor-button-secondary">Регистрация</Button>
+              <Button className="bg-white text-honor-blue border border-honor-blue rounded-xl px-4 py-2 hover:bg-honor-gray transition-colors">Регистрация</Button>
             </Link>
           </div>
         </div>
