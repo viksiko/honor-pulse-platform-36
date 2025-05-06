@@ -14,7 +14,7 @@ import {
   Star 
 } from 'lucide-react';
 
-const Index = () => {
+const Index: React.FC = () => {
   return (
     <Layout>
       {/* Hero section */}
