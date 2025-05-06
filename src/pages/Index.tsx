@@ -29,12 +29,12 @@ const Index: React.FC = () => {
                 Цифровая платформа для прямого взаимодействия между избирателями и представителями власти
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <Link to="/register" className="w-full sm:w-auto">
+                <Link to="/register" className="w-full sm:w-1/2">
                   <Button className="bg-white text-honor-blue hover:bg-gray-100 font-bold px-6 py-6 rounded-xl w-full">
                     Для избирателей
                   </Button>
                 </Link>
-                <Link to="/register/representative" className="w-full sm:w-auto">
+                <Link to="/register/representative" className="w-full sm:w-1/2">
                   <Button className="bg-white/20 hover:bg-white/30 text-white border border-white/40 font-bold px-6 py-6 rounded-xl w-full">
                     Для представителей власти
                   </Button>
