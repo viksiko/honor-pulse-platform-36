@@ -92,11 +92,8 @@ const Header = () => {
             <Link to="/login">
               <Button className="honor-button-primary flex items-center space-x-1">
                 <LogIn size={18} />
-                <span>Войти</span>
+                <span>Логин</span>
               </Button>
-            </Link>
-            <Link to="/register">
-              <Button className="bg-white text-honor-blue border border-honor-blue rounded-xl px-4 py-2 hover:bg-honor-gray transition-colors">Регистрация</Button>
             </Link>
           </div>
         </div>

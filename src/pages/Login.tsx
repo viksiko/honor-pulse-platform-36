@@ -5,15 +5,19 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Mail, Lock } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Separator } from '@/components/ui/separator';
+import { useAuth } from '@/context/AuthContext';
+import GosuslugiAuthButton from '@/components/auth/GosuslugiAuthButton';
 
 const Login = () => {
-  const { toast } = useToast();
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,15 +27,18 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, handle authentication
-    toast({
-      title: "Вход выполнен!",
-      description: "Вы успешно вошли в систему.",
-      variant: "default",
-    });
-    // Redirect to user dashboard would happen here
+    setIsLoading(true);
+    
+    try {
+      await login(formData.email, formData.password);
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Login failed:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -39,6 +46,14 @@ const Login = () => {
       <div className="honor-container py-12">
         <div className="max-w-md mx-auto">
           <h1 className="text-3xl font-bold mb-8 text-center">Вход в систему</h1>
+
+          <GosuslugiAuthButton className="mb-6" />
+          
+          <div className="flex items-center my-6">
+            <Separator className="flex-grow" />
+            <span className="px-4 text-sm text-honor-darkGray">или</span>
+            <Separator className="flex-grow" />
+          </div>
 
           <form onSubmit={handleSubmit} className="honor-card">
             <div className="mb-6">
@@ -79,8 +94,12 @@ const Login = () => {
               </div>
             </div>
 
-            <Button type="submit" className="w-full honor-button-primary">
-              Войти
+            <Button 
+              type="submit" 
+              className="w-full honor-button-primary"
+              disabled={isLoading}
+            >
+              {isLoading ? 'Выполняется вход...' : 'Войти'}
             </Button>
           </form>
 
@@ -94,9 +113,7 @@ const Login = () => {
           </div>
 
           <div className="mt-6 text-center">
-            <Link to="/representative/login" className="text-honor-blue hover:underline">
-              Войти как представитель власти
-            </Link>
+            <GosuslugiAuthButton isRepresentative={true} className="max-w-xs mx-auto" />
           </div>
         </div>
       </div>

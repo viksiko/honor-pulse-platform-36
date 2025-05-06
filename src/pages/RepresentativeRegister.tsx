@@ -8,6 +8,8 @@ import {
   RegisterFooter,
   RepresentativeDetails 
 } from '@/components/voter';
+import GosuslugiAuthButton from '@/components/auth/GosuslugiAuthButton';
+import { Separator } from '@/components/ui/separator';
 
 const RepresentativeRegister = () => {
   const { toast } = useToast();
@@ -87,6 +89,20 @@ const RepresentativeRegister = () => {
       <div className="honor-container py-12">
         <div className="max-w-md mx-auto">
           <h1 className="text-3xl font-bold mb-8 text-center">Регистрация представителя власти</h1>
+
+          <GosuslugiAuthButton isRepresentative={true} className="mb-6" />
+          
+          <div className="flex items-center my-6">
+            <Separator className="flex-grow" />
+            <span className="px-4 text-sm text-honor-darkGray">или</span>
+            <Separator className="flex-grow" />
+          </div>
+
+          <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-6">
+            <p className="text-sm text-honor-blue">
+              <strong>Рекомендуем:</strong> Регистрация через Госуслуги значительно упрощает процесс верификации и автоматически подтверждает ваши официальные полномочия.
+            </p>
+          </div>
 
           {step === 1 && (
             <RepresentativeStep1 

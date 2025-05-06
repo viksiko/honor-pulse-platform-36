@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import { useToast } from '@/components/ui/use-toast';
 import { RegisterStep1, VerificationStep, RegisterFooter } from '@/components/voter';
+import GosuslugiAuthButton from '@/components/auth/GosuslugiAuthButton';
+import { Separator } from '@/components/ui/separator';
 
 const Register = () => {
   const { toast } = useToast();
@@ -54,6 +56,14 @@ const Register = () => {
         <div className="max-w-md mx-auto">
           <h1 className="text-3xl font-bold mb-8 text-center">Регистрация избирателя</h1>
 
+          <GosuslugiAuthButton className="mb-6" />
+          
+          <div className="flex items-center my-6">
+            <Separator className="flex-grow" />
+            <span className="px-4 text-sm text-honor-darkGray">или</span>
+            <Separator className="flex-grow" />
+          </div>
+
           {step === 1 ? (
             <RegisterStep1 
               formData={formData}
@@ -70,6 +80,12 @@ const Register = () => {
           )}
 
           <RegisterFooter />
+          
+          <div className="mt-6 text-center">
+            <div className="text-sm text-honor-darkGray mb-2">
+              Регистрация через Госуслуги позволит автоматически заполнить данные профиля и получить подтверждение вашей личности.
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
