@@ -2,7 +2,8 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { gosuslugiAuth } from '@/services/gosuslugiAuth';
-import gosUslugiLogo from '@/assets/gosuslugi-logo.svg'; // We'll create this asset
+import { useToast } from '@/components/ui/use-toast';
+import gosUslugiLogo from '@/assets/gosuslugi-logo.svg';
 
 interface GosuslugiAuthButtonProps {
   isRepresentative?: boolean;
@@ -10,8 +11,22 @@ interface GosuslugiAuthButtonProps {
 }
 
 const GosuslugiAuthButton: React.FC<GosuslugiAuthButtonProps> = ({ isRepresentative = false, className }) => {
+  const { toast } = useToast();
+  
   const handleClick = () => {
-    gosuslugiAuth.initiateLogin(isRepresentative);
+    try {
+      gosuslugiAuth.initiateLogin(isRepresentative);
+      toast({
+        title: "Перенаправление на Госуслуги",
+        description: "Сейчас вы будете перенаправлены на портал Госуслуг для авторизации"
+      });
+    } catch (error) {
+      toast({
+        title: "Ошибка авторизации",
+        description: "Не удалось выполнить вход через Госуслуги. Пожалуйста, попробуйте снова.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -21,10 +36,11 @@ const GosuslugiAuthButton: React.FC<GosuslugiAuthButtonProps> = ({ isRepresentat
       type="button"
     >
       <div className="flex items-center">
-        {/* This would use the actual Госуслуги logo in a real implementation */}
-        <div className="bg-white p-1 rounded mr-2">
-          <span className="text-[#0065B1] font-bold text-sm">ГОС</span>
-        </div>
+        <img 
+          src={gosUslugiLogo} 
+          alt="Госуслуги" 
+          className="h-6 w-6 mr-2 bg-white rounded p-[2px]"
+        />
         <span>
           {isRepresentative
             ? 'Войти как представитель власти'

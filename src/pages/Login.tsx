@@ -8,11 +8,13 @@ import { Mail, Lock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 import { useAuth } from '@/context/AuthContext';
-import GosuslugiAuthButton from '@/components/auth/GosuslugiAuthButton';
+import { useToast } from '@/components/ui/use-toast';
+import { GosuslugiAuthButton } from '@/components/auth';
 
 const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -33,8 +35,17 @@ const Login = () => {
     
     try {
       await login(formData.email, formData.password);
+      toast({
+        title: "Вход выполнен успешно!",
+        description: "Добро пожаловать в систему «Честь»",
+      });
       navigate('/dashboard');
     } catch (error) {
+      toast({
+        title: "Ошибка входа",
+        description: "Неверный email или пароль. Пожалуйста, проверьте данные и попробуйте снова.",
+        variant: "destructive",
+      });
       console.error('Login failed:', error);
     } finally {
       setIsLoading(false);

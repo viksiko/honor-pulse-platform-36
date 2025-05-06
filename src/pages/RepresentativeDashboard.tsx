@@ -7,6 +7,7 @@ import {
   TasksTab,
   MessagesTab
 } from '@/components/representative';
+import BlogTab from '@/components/representative/BlogTab';
 
 const RepresentativeDashboard = () => {
   return (
@@ -24,6 +25,7 @@ const RepresentativeDashboard = () => {
               <TabsList className="mb-6 bg-honor-gray">
                 <TabsTrigger value="tasks" className="flex-1">Задачи</TabsTrigger>
                 <TabsTrigger value="messages" className="flex-1">Сообщения</TabsTrigger>
+                <TabsTrigger value="blog" className="flex-1">Блог</TabsTrigger>
               </TabsList>
               
               <TabsContent value="tasks">
@@ -32,6 +34,10 @@ const RepresentativeDashboard = () => {
               
               <TabsContent value="messages">
                 <MessagesTab />
+              </TabsContent>
+              
+              <TabsContent value="blog">
+                <BlogTab />
               </TabsContent>
             </Tabs>
           </div>
