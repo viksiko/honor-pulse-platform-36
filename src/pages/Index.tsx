@@ -58,65 +58,77 @@ const Index: React.FC = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Возможности платформы</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="p-6">
-              <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
-                <MapPin className="text-honor-blue" size={24} />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Карта округов</h3>
-              <p className="text-honor-darkGray">
-                Интерактивная карта избирательных округов с информацией о представителях и активных заданиях
-              </p>
-            </Card>
+            <Link to="/map" className="block transition-transform hover:scale-105">
+              <Card className="p-6 h-full cursor-pointer hover:shadow-md transition-shadow">
+                <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
+                  <MapPin className="text-honor-blue" size={24} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Карта округов</h3>
+                <p className="text-honor-darkGray">
+                  Интерактивная карта избирательных округов с информацией о представителях и активных заданиях
+                </p>
+              </Card>
+            </Link>
             
-            <Card className="p-6">
-              <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
-                <Plus className="text-honor-blue" size={24} />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Создание заданий</h3>
-              <p className="text-honor-darkGray">
-                Возможность создавать конкретные задания для представителей власти и отслеживать их выполнение
-              </p>
-            </Card>
+            <Link to="/tasks/create" className="block transition-transform hover:scale-105">
+              <Card className="p-6 h-full cursor-pointer hover:shadow-md transition-shadow">
+                <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
+                  <Plus className="text-honor-blue" size={24} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Создание заданий</h3>
+                <p className="text-honor-darkGray">
+                  Возможность создавать конкретные задания для представителей власти и отслеживать их выполнение
+                </p>
+              </Card>
+            </Link>
             
-            <Card className="p-6">
-              <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
-                <MessageSquare className="text-honor-blue" size={24} />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Система сообщений</h3>
-              <p className="text-honor-darkGray">
-                Прямое общение между избирателями и представителями власти через встроенный мессенджер
-              </p>
-            </Card>
+            <Link to="/messages" className="block transition-transform hover:scale-105">
+              <Card className="p-6 h-full cursor-pointer hover:shadow-md transition-shadow">
+                <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
+                  <MessageSquare className="text-honor-blue" size={24} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Система сообщений</h3>
+                <p className="text-honor-darkGray">
+                  Прямое общение между избирателями и представителями власти через встроенный мессенджер
+                </p>
+              </Card>
+            </Link>
             
-            <Card className="p-6">
-              <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
-                <Users className="text-honor-blue" size={24} />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Профили представителей</h3>
-              <p className="text-honor-darkGray">
-                Подробная информация о представителях власти, их деятельности и результатах работы
-              </p>
-            </Card>
+            <Link to="/representatives" className="block transition-transform hover:scale-105">
+              <Card className="p-6 h-full cursor-pointer hover:shadow-md transition-shadow">
+                <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
+                  <Users className="text-honor-blue" size={24} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Профили представителей</h3>
+                <p className="text-honor-darkGray">
+                  Подробная информация о представителях власти, их деятельности и результатах работы
+                </p>
+              </Card>
+            </Link>
             
-            <Card className="p-6">
-              <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
-                <ThumbsUp className="text-honor-blue" size={24} />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Система оценки</h3>
-              <p className="text-honor-darkGray">
-                Возможность оценивать работу представителей власти и оставлять отзывы о выполненных заданиях
-              </p>
-            </Card>
+            <Link to="/dashboard" className="block transition-transform hover:scale-105">
+              <Card className="p-6 h-full cursor-pointer hover:shadow-md transition-shadow">
+                <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
+                  <ThumbsUp className="text-honor-blue" size={24} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Система оценки</h3>
+                <p className="text-honor-darkGray">
+                  Возможность оценивать работу представителей власти и оставлять отзывы о выполненных заданиях
+                </p>
+              </Card>
+            </Link>
             
-            <Card className="p-6">
-              <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
-                <Star className="text-honor-blue" size={24} />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Система рейтинга</h3>
-              <p className="text-honor-darkGray">
-                Рейтинговая система для представителей власти на основе активности и качества выполнения заданий
-              </p>
-            </Card>
+            <Link to="/representatives" className="block transition-transform hover:scale-105">
+              <Card className="p-6 h-full cursor-pointer hover:shadow-md transition-shadow">
+                <div className="bg-honor-blue/10 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-4">
+                  <Star className="text-honor-blue" size={24} />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Система рейтинга</h3>
+                <p className="text-honor-darkGray">
+                  Рейтинговая система для представителей власти на основе активности и качества выполнения заданий
+                </p>
+              </Card>
+            </Link>
           </div>
         </div>
       </div>
