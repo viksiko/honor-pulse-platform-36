@@ -1,17 +1,24 @@
-FROM node:20-alpine
+# Stage 1: билд фронтенда
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Копируем зависимости и устанавливаем их
 COPY package*.json ./
 RUN npm install
 
-# Копируем исходный код
 COPY . .
-
-# Собираем приложение
 RUN npm run build
 
-# Используем встроенный сервер Vite для production
+
+# Stage 2: nginx для продакшена
+FROM nginx:stable-alpine
+
+# Копируем билд
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Кастомный nginx конфиг (SPA + готовность к API)
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "80"]
+
+CMD ["nginx", "-g", "daemon off;"]
