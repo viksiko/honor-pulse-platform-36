@@ -37,7 +37,7 @@ const Login = () => {
       await login(formData.email, formData.password);
       toast({
         title: "Вход выполнен успешно!",
-        description: "Добро пожаловать в систему «Гос-честь»",
+        description: "Добро пожаловать в систему «Честь»",
       });
       navigate('/dashboard');
     } catch (error) {

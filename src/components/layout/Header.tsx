@@ -7,7 +7,8 @@ import {
   Dialog, 
   DialogContent, 
   DialogHeader, 
-  DialogTitle, 
+  DialogTitle,
+  DialogDescription,
   DialogTrigger 
 } from '@/components/ui/dialog';
 
@@ -57,6 +58,9 @@ const Header = () => {
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Подписки и уведомления</DialogTitle>
+                  <DialogDescription>
+                    Управляйте подписками и просматривайте последние уведомления
+                  </DialogDescription>
                 </DialogHeader>
                 <div className="py-4">
                   <div className="space-y-4">
