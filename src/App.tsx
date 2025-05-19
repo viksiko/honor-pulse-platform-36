@@ -26,6 +26,7 @@ import GosuslugiCallback from "./pages/GosuslugiCallback";
 import RepresentativeTasks from "./pages/RepresentativeTasks";
 import RepresentativeStatistics from "./pages/RepresentativeStatistics";
 import Tasks from "./pages/Tasks";
+import Analytics from "./pages/Analytics";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ const App = () => (
             <Route path="/blog/:id" element={<Blog />} />
             <Route path="/messages" element={<MessageCenter />} />
             <Route path="/representative/dashboard" element={<RepresentativeDashboard />} />
+            <Route path="/analytics" element={<Analytics />} />
             
             {/* Added routes for tasks management and statistics */}
             <Route path="/representative/tasks" element={<RepresentativeTasks />} />

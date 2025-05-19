@@ -23,7 +23,7 @@ const Index: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Платформа «Честь»
+                Платформа «гос-честь»
               </h1>
               <p className="text-lg md:text-xl mb-8">
                 Цифровая платформа для прямого взаимодействия между избирателями и представителями власти
@@ -43,8 +43,8 @@ const Index: React.FC = () => {
             </div>
             <div className="lg:flex justify-center hidden">
               <img 
-                src="/illustration-placeholder.png" 
-                alt="Платформа Честь" 
+                src="/placeholder.svg" 
+                alt="Платформа гос-честь" 
                 className="max-w-full h-auto"
               />
             </div>
@@ -179,6 +179,59 @@ const Index: React.FC = () => {
                 Начать пользоваться платформой
               </Button>
             </Link>
+          </div>
+        </div>
+      </div>
+      
+      {/* New section: Recent activity */}
+      <div className="py-16 bg-gray-50">
+        <div className="honor-container">
+          <h2 className="text-3xl font-bold text-center mb-12">Недавняя активность</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="p-6">
+              <h3 className="text-xl font-bold mb-4">Последние задачи</h3>
+              <div className="space-y-4">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="flex items-center p-3 bg-honor-gray rounded-lg">
+                    <div className="w-2 h-2 rounded-full bg-green-500 mr-3"></div>
+                    <div className="flex-grow">
+                      <p className="font-medium">Благоустройство парка</p>
+                      <p className="text-sm text-honor-darkGray">Округ №{i}</p>
+                    </div>
+                    <span className="text-xs text-honor-darkGray">2 часа назад</span>
+                  </div>
+                ))}
+                <Link to="/tasks" className="block text-center text-honor-blue hover:underline pt-2">
+                  Смотреть все задачи
+                </Link>
+              </div>
+            </Card>
+            
+            <Card className="p-6">
+              <h3 className="text-xl font-bold mb-4">Обсуждаемые темы</h3>
+              <div className="space-y-4">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="flex items-start p-3 bg-honor-gray rounded-lg">
+                    <div className="bg-honor-blue/10 rounded-full p-2 mr-3">
+                      <MessageSquare className="text-honor-blue" size={16} />
+                    </div>
+                    <div className="flex-grow">
+                      <p className="font-medium">Развитие транспортной инфраструктуры</p>
+                      <div className="flex items-center mt-1">
+                        <span className="text-xs text-honor-darkGray mr-4">12 комментариев</span>
+                        <span className="flex items-center text-xs text-honor-darkGray">
+                          <ThumbsUp size={12} className="mr-1" /> 24
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <Link to="/blog" className="block text-center text-honor-blue hover:underline pt-2">
+                  Перейти к обсуждениям
+                </Link>
+              </div>
+            </Card>
           </div>
         </div>
       </div>
