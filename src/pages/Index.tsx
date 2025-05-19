@@ -35,7 +35,7 @@ const Index: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Платформа «Гос-честь»
+                Платформа «Честь»
               </h1>
               <p className="text-lg md:text-xl mb-8">
                 Цифровая платформа для прямого взаимодействия между избирателями и представителями власти
@@ -56,7 +56,7 @@ const Index: React.FC = () => {
             <div className="lg:flex justify-center hidden">
               <img 
                 src="/placeholder.svg" 
-                alt="Платформа Гос-честь" 
+                alt="Платформа Честь" 
                 className="max-w-full h-auto"
               />
             </div>
@@ -200,7 +200,7 @@ const Index: React.FC = () => {
         <div className="honor-container">
           <h2 className="text-3xl font-bold text-center mb-4">Статистика платформы</h2>
           <p className="text-honor-darkGray text-center max-w-2xl mx-auto mb-12">
-            Актуальные данные о работе платформы «Гос-честь»
+            Актуальные данные о работе платформы «Честь»
           </p>
           
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
