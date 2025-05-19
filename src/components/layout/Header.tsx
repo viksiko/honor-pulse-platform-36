@@ -21,7 +21,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-honor-blue whitespace-nowrap">Гос-честь</span>
+              <span className="text-2xl font-bold text-honor-blue whitespace-nowrap">Гос-Честь</span>
             </Link>
           </div>
 
