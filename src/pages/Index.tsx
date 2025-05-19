@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
@@ -11,10 +10,22 @@ import {
   Plus, 
   MessageSquare, 
   ThumbsUp,
-  Star 
+  Star,
+  BarChart3,
+  CheckCircle,
+  Clock
 } from 'lucide-react';
 
 const Index: React.FC = () => {
+  // Mock statistics for the platform
+  const platformStats = {
+    activeUsers: 12547,
+    completedTasks: 3876,
+    activeRepresentatives: 342,
+    avgResponseTime: "8 часов",
+    satisfactionRate: "87%"
+  };
+
   return (
     <Layout>
       {/* Hero section */}
@@ -179,6 +190,48 @@ const Index: React.FC = () => {
                 Начать пользоваться платформой
               </Button>
             </Link>
+          </div>
+        </div>
+      </div>
+      
+      {/* Platform statistics section */}
+      <div className="py-16 bg-honor-blue/5">
+        <div className="honor-container">
+          <h2 className="text-3xl font-bold text-center mb-4">Статистика платформы</h2>
+          <p className="text-honor-darkGray text-center max-w-2xl mx-auto mb-12">
+            Актуальные данные о работе платформы «Гос-Честь»
+          </p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
+            <Card className="p-4 text-center hover:shadow-md transition-shadow">
+              <Users className="h-8 w-8 mx-auto mb-2 text-honor-blue" />
+              <p className="text-sm text-honor-darkGray">Активных пользователей</p>
+              <p className="text-2xl font-bold">{platformStats.activeUsers.toLocaleString('ru-RU')}</p>
+            </Card>
+            
+            <Card className="p-4 text-center hover:shadow-md transition-shadow">
+              <CheckCircle className="h-8 w-8 mx-auto mb-2 text-green-600" />
+              <p className="text-sm text-honor-darkGray">Выполнено задач</p>
+              <p className="text-2xl font-bold">{platformStats.completedTasks.toLocaleString('ru-RU')}</p>
+            </Card>
+            
+            <Card className="p-4 text-center hover:shadow-md transition-shadow">
+              <User className="h-8 w-8 mx-auto mb-2 text-honor-blue" />
+              <p className="text-sm text-honor-darkGray">Представителей власти</p>
+              <p className="text-2xl font-bold">{platformStats.activeRepresentatives.toLocaleString('ru-RU')}</p>
+            </Card>
+            
+            <Card className="p-4 text-center hover:shadow-md transition-shadow">
+              <Clock className="h-8 w-8 mx-auto mb-2 text-yellow-500" />
+              <p className="text-sm text-honor-darkGray">Среднее время ответа</p>
+              <p className="text-2xl font-bold">{platformStats.avgResponseTime}</p>
+            </Card>
+            
+            <Card className="p-4 text-center hover:shadow-md transition-shadow">
+              <ThumbsUp className="h-8 w-8 mx-auto mb-2 text-blue-500" />
+              <p className="text-sm text-honor-darkGray">Уровень удовлетворенности</p>
+              <p className="text-2xl font-bold">{platformStats.satisfactionRate}</p>
+            </Card>
           </div>
         </div>
       </div>

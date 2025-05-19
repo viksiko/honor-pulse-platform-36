@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="honor-container py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-bold mb-4">Платформа «Честь»</h3>
+            <h3 className="text-lg font-bold mb-4">Платформа «Гос-Честь»</h3>
             <p className="text-honor-darkGray">
               Цифровая платформа взаимодействия между гражданами и представителями власти
             </p>
@@ -47,7 +47,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-200 mt-8 pt-6 text-center text-honor-darkGray">
-          <p>© 2025 Платформа «Честь». Все права защищены.</p>
+          <p>© 2025 Платформа «Гос-Честь». Все права защищены.</p>
         </div>
       </div>
     </footer>
