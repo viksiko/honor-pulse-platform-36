@@ -30,6 +30,7 @@ import RepresentativeTasks from "./pages/RepresentativeTasks";
 import RepresentativeStatistics from "./pages/RepresentativeStatistics";
 import Tasks from "./pages/Tasks";
 import Analytics from "./pages/Analytics";
+import DistrictDetails from "./pages/DistrictDetails";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,9 @@ const App = () => (
             <Route path="/gosuslugi/callback" element={<GosuslugiCallback />} />
             <Route path="/sber/auth" element={<SberCallback />} />
             <Route path="/tinkoff/auth" element={<TinkoffCallback />} />
+            
+            {/* District details page */}
+            <Route path="/districts/:id" element={<DistrictDetails />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
