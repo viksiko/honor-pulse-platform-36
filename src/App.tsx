@@ -23,6 +23,9 @@ import MessageCenter from "./pages/MessageCenter";
 import RepresentativeDashboard from "./pages/RepresentativeDashboard";
 import RepresentativeRegister from "./pages/RepresentativeRegister";
 import GosuslugiCallback from "./pages/GosuslugiCallback";
+import RepresentativeTasks from "./pages/RepresentativeTasks";
+import RepresentativeStatistics from "./pages/RepresentativeStatistics";
+import Tasks from "./pages/Tasks";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +53,11 @@ const App = () => (
             <Route path="/blog/:id" element={<Blog />} />
             <Route path="/messages" element={<MessageCenter />} />
             <Route path="/representative/dashboard" element={<RepresentativeDashboard />} />
+            
+            {/* Added routes for tasks management and statistics */}
+            <Route path="/representative/tasks" element={<RepresentativeTasks />} />
+            <Route path="/representative/statistics" element={<RepresentativeStatistics />} />
+            <Route path="/tasks" element={<Tasks />} />
             
             {/* Госуслуги callback route */}
             <Route path="/gosuslugi/callback" element={<GosuslugiCallback />} />
