@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,7 @@ import {
   ThumbsUp,
   MessageSquare
 } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 
 // Task type definition
 type Task = {
@@ -24,6 +24,7 @@ type Task = {
   likes: number;
   comments: number;
   createdAt: string;
+  hasEscalation?: boolean;
 };
 
 // Mock data
@@ -36,7 +37,8 @@ const mockTasks: Task[] = [
     date: "2025-08-15",
     likes: 24,
     comments: 5,
-    createdAt: "2025-05-01"
+    createdAt: "2025-05-01",
+    hasEscalation: true
   },
   {
     id: 2,
@@ -86,7 +88,14 @@ const TasksTab = () => {
       {mockTasks.map(task => (
         <Card key={task.id} className="honor-card mb-6">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-xl font-bold">{task.title}</h3>
+            <div className="flex items-start">
+              <h3 className="text-xl font-bold">{task.title}</h3>
+              {task.hasEscalation && (
+                <Badge className="ml-2 bg-red-100 text-red-800">
+                  Эскалация
+                </Badge>
+              )}
+            </div>
             <Badge className={
               task.status === 'completed' 
                 ? 'bg-green-100 text-green-800' 
@@ -127,10 +136,10 @@ const TasksTab = () => {
           
           <div className="flex space-x-2 mt-4 pt-4 border-t">
             <Button 
-              className="flex-1 bg-blue-100 hover:bg-blue-200 text-blue-800"
+              className={`flex-1 ${task.hasEscalation ? 'bg-red-100 hover:bg-red-200 text-red-800' : 'bg-blue-100 hover:bg-blue-200 text-blue-800'}`}
               onClick={() => handleUpdateTaskStatus(task.id)}
             >
-              Обновить статус
+              {task.hasEscalation ? 'Ответить на эскалацию' : 'Обновить статус'}
             </Button>
             <Link to={`/tasks/edit/${task.id}`} className="flex-1">
               <Button className="w-full honor-button-secondary">

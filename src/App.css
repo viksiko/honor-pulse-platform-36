@@ -42,9 +42,9 @@
   color: #888;
 }
 
-/* Font size standardization */
+/* Standardized font sizes */
 button, input, textarea, select, label, a {
-  font-size: 1rem !important; /* Base font size for all interface elements */
+  font-size: 1rem !important; 
 }
 
 h1 {

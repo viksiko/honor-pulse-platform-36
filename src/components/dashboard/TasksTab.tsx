@@ -1,10 +1,20 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Calendar, Clock, Plus, ThumbsUp, MessageSquare } from 'lucide-react';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { 
+  MapPin, 
+  Calendar, 
+  Clock, 
+  Plus, 
+  ThumbsUp, 
+  MessageSquare,
+  AlertTriangle
+} from 'lucide-react';
+import EscalateTask from './EscalateTask';
 
 // Mock data
 const mockTasks = [
@@ -16,7 +26,8 @@ const mockTasks = [
     date: "2025-08-15",
     likes: 24,
     comments: 5,
-    createdAt: "2025-05-01"
+    createdAt: "2025-05-01",
+    lastResponseDays: 14
   },
   {
     id: 2,
@@ -26,11 +37,16 @@ const mockTasks = [
     date: "2025-04-20",
     likes: 56,
     comments: 12,
-    createdAt: "2025-03-15"
+    createdAt: "2025-03-15",
+    lastResponseDays: 2
   }
 ];
 
 const TasksTab = () => {
+  const [escalatingTask, setEscalatingTask] = useState<{ id: number, title: string } | null>(null);
+
+  const needsEscalation = (days: number) => days > 7;
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center mb-4">
@@ -42,6 +58,16 @@ const TasksTab = () => {
           </Button>
         </Link>
       </div>
+      
+      <Dialog open={!!escalatingTask} onOpenChange={(open) => !open && setEscalatingTask(null)}>
+        <DialogContent className="sm:max-w-lg">
+          <EscalateTask 
+            taskId={escalatingTask?.id.toString()}
+            taskTitle={escalatingTask?.title}
+            onCancel={() => setEscalatingTask(null)}
+          />
+        </DialogContent>
+      </Dialog>
       
       {mockTasks.map(task => (
         <Card key={task.id} className="honor-card">
@@ -79,10 +105,22 @@ const TasksTab = () => {
                 <span>{task.comments}</span>
               </div>
             </div>
-            <span className="text-sm text-honor-darkGray">
-              <Clock size={16} className="inline mr-1" />
-              Создано {new Date(task.createdAt).toLocaleDateString('ru-RU')}
-            </span>
+            <div className="flex items-center">
+              {task.status !== 'completed' && needsEscalation(task.lastResponseDays) && (
+                <Button 
+                  variant="ghost" 
+                  className="text-amber-600 flex items-center mr-2 hover:bg-amber-50"
+                  onClick={() => setEscalatingTask({ id: task.id, title: task.title })}
+                >
+                  <AlertTriangle size={16} className="mr-1" />
+                  Эскалировать
+                </Button>
+              )}
+              <span className="text-sm text-honor-darkGray">
+                <Clock size={16} className="inline mr-1" />
+                Создано {new Date(task.createdAt).toLocaleDateString('ru-RU')}
+              </span>
+            </div>
           </div>
         </Card>
       ))}
