@@ -63,13 +63,9 @@ const mockTasks: Task[] = [
 ];
 
 const TasksTab = () => {
-  const { toast } = useToast();
-
   const handleUpdateTaskStatus = (taskId: number) => {
-    toast({
-      title: "Статус обновлен",
-      description: "Статус задачи успешно обновлен",
-      variant: "default",
+    toast.success("Статус обновлен", {
+      description: "Статус задачи успешно обновлен"
     });
   };
 
