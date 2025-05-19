@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
-import { GosuslugiAuthButton } from '@/components/auth';
+import { GosuslugiAuthButton, SberAuthButton, TinkoffAuthButton } from '@/components/auth';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const Login = () => {
       await login(formData.email, formData.password);
       toast({
         title: "Вход выполнен успешно!",
-        description: "Добро пожаловать в систему «Честь»",
+        description: "Добро пожаловать в систему «Гос-честь»",
       });
       navigate('/dashboard');
     } catch (error) {
@@ -58,7 +58,11 @@ const Login = () => {
         <div className="max-w-md mx-auto">
           <h1 className="text-3xl font-bold mb-8 text-center">Вход в систему</h1>
 
-          <GosuslugiAuthButton className="mb-6" />
+          <div className="flex flex-col gap-3 mb-6">
+            <GosuslugiAuthButton />
+            <SberAuthButton />
+            <TinkoffAuthButton />
+          </div>
           
           <div className="flex items-center my-6">
             <Separator className="flex-grow" />
@@ -124,7 +128,9 @@ const Login = () => {
           </div>
 
           <div className="mt-6 text-center">
-            <GosuslugiAuthButton isRepresentative={true} className="max-w-xs mx-auto" />
+            <GosuslugiAuthButton isRepresentative={true} className="max-w-xs mx-auto mb-2" />
+            <SberAuthButton isRepresentative={true} className="max-w-xs mx-auto mb-2" />
+            <TinkoffAuthButton isRepresentative={true} className="max-w-xs mx-auto" />
           </div>
         </div>
       </div>

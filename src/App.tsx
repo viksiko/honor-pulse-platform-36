@@ -24,6 +24,8 @@ import MessageCenter from "./pages/MessageCenter";
 import RepresentativeDashboard from "./pages/RepresentativeDashboard";
 import RepresentativeRegister from "./pages/RepresentativeRegister";
 import GosuslugiCallback from "./pages/GosuslugiCallback";
+import SberCallback from "./pages/SberCallback";
+import TinkoffCallback from "./pages/TinkoffCallback";
 import RepresentativeTasks from "./pages/RepresentativeTasks";
 import RepresentativeStatistics from "./pages/RepresentativeStatistics";
 import Tasks from "./pages/Tasks";
@@ -50,7 +52,7 @@ const App = () => (
             <Route path="/balance" element={<Balance />} />
             <Route path="/help" element={<Help />} />
             
-            {/* New routes */}
+            {/* Dashboard routes */}
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<Blog />} />
@@ -58,13 +60,15 @@ const App = () => (
             <Route path="/representative/dashboard" element={<RepresentativeDashboard />} />
             <Route path="/analytics" element={<Analytics />} />
             
-            {/* Added routes for tasks management and statistics */}
+            {/* Tasks management and statistics */}
             <Route path="/representative/tasks" element={<RepresentativeTasks />} />
             <Route path="/representative/statistics" element={<RepresentativeStatistics />} />
             <Route path="/tasks" element={<Tasks />} />
             
-            {/* Госуслуги callback route */}
+            {/* Authentication callback routes */}
             <Route path="/gosuslugi/callback" element={<GosuslugiCallback />} />
+            <Route path="/sber/auth" element={<SberCallback />} />
+            <Route path="/tinkoff/auth" element={<TinkoffCallback />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>

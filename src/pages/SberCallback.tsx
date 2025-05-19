@@ -3,12 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import { useAuth } from '@/context/AuthContext';
-import { gosuslugiAuth } from '@/services/gosuslugiAuth';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 
-const GosuslugiCallback = () => {
+const SberCallback = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user } = useAuth();
@@ -19,46 +18,40 @@ const GosuslugiCallback = () => {
     try {
       // Get URL parameters
       const params = new URLSearchParams(window.location.search);
-      const code = params.get('code');
-      const state = params.get('state');
+      const userType = params.get('user_type');
       
-      if (!code) {
-        // Instead of throwing an error for missing code, we'll handle it gracefully
-        setError('Отсутствует код авторизации. Пожалуйста, попробуйте войти снова.');
-        setIsLoading(false);
-        return;
-      }
-      
-      if (!state) {
+      if (!userType) {
         setError('Отсутствуют данные о типе пользователя. Пожалуйста, попробуйте снова.');
         setIsLoading(false);
         return;
       }
       
-      const isRepresentative = state === 'representative';
+      const isRepresentative = userType === 'representative';
       
-      // Exchange code for token
-      const token = await gosuslugiAuth.exchangeCodeForToken(code);
-      
-      // Get user info
-      const userData = await gosuslugiAuth.getUserInfo(token.access_token, isRepresentative);
-      
-      // Map to app format
-      const appUser = gosuslugiAuth.mapUserDataToAppFormat(userData, isRepresentative);
+      // Mock successful login since this is a demo
+      const mockUser = {
+        id: isRepresentative ? 'rep-sber-123' : 'voter-sber-456',
+        fullName: isRepresentative ? 'Андрей Петров' : 'Ольга Смирнова',
+        email: isRepresentative ? 'petrov@gov.ru' : 'smirnova@example.com',
+        phone: isRepresentative ? '+7 (999) 123-45-67' : '+7 (999) 765-43-21',
+        district: 'Округ №2',
+        verified: true,
+        isRepresentative,
+      };
       
       // Store user in localStorage
-      localStorage.setItem('honorUser', JSON.stringify(appUser));
+      localStorage.setItem('honorUser', JSON.stringify(mockUser));
       
       // Show success message
       toast({
         title: "Вход выполнен успешно!",
-        description: "Вы успешно вошли через Госуслуги",
+        description: "Вы успешно вошли через Сбер ID",
       });
       
       // Redirect based on user type
       navigate(isRepresentative ? '/representative/dashboard' : '/dashboard');
     } catch (error) {
-      console.error('Error during Госуслуги authentication:', error);
+      console.error('Error during Сбер ID authentication:', error);
       setError('Произошла ошибка при авторизации. Пожалуйста, попробуйте снова.');
     } finally {
       setIsLoading(false);
@@ -79,11 +72,11 @@ const GosuslugiCallback = () => {
     <Layout>
       <div className="honor-container py-12">
         <div className="max-w-md mx-auto text-center">
-          <h1 className="text-2xl font-bold mb-6">Авторизация через Госуслуги</h1>
+          <h1 className="text-2xl font-bold mb-6">Авторизация через Сбер ID</h1>
           
           {isLoading ? (
             <div className="flex flex-col items-center justify-center">
-              <Loader2 className="h-8 w-8 animate-spin mb-4 text-honor-blue" />
+              <Loader2 className="h-8 w-8 animate-spin mb-4 text-[#21A038]" />
               <p>Выполняется вход...</p>
             </div>
           ) : error ? (
@@ -106,4 +99,4 @@ const GosuslugiCallback = () => {
   );
 };
 
-export default GosuslugiCallback;
+export default SberCallback;
