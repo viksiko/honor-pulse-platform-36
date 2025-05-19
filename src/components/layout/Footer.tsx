@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { HelpCircle } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
       <div className="honor-container py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-bold mb-4">Платформа «Гос-Честь»</h3>
+            <h3 className="text-lg font-bold mb-4">Платформа «Гос-честь»</h3>
             <p className="text-honor-darkGray">
               Цифровая платформа взаимодействия между гражданами и представителями власти
             </p>
@@ -36,18 +37,22 @@ const Footer = () => {
           
           <div>
             <h3 className="text-lg font-bold mb-4">Контакты</h3>
-            <p className="text-honor-darkGray">support@honor-platform.ru</p>
+            <p className="text-honor-darkGray">support@gos-chest.ru</p>
             <p className="text-honor-darkGray">+7 (800) 123-45-67</p>
-            <div className="mt-4">
+            <div className="mt-4 flex flex-col gap-2">
               <Link to="/messages" className="text-honor-blue hover:underline">
                 Центр сообщений
+              </Link>
+              <Link to="/help" className="text-honor-blue hover:underline flex items-center">
+                <HelpCircle size={14} className="mr-1" />
+                Помощь и поддержка
               </Link>
             </div>
           </div>
         </div>
         
         <div className="border-t border-gray-200 mt-8 pt-6 text-center text-honor-darkGray">
-          <p>© 2025 Платформа «Гос-Честь». Все права защищены.</p>
+          <p>© 2025 Платформа «Гос-честь». Все права защищены.</p>
         </div>
       </div>
     </footer>

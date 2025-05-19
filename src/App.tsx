@@ -15,6 +15,7 @@ import RepresentativeProfile from "./pages/RepresentativeProfile";
 import TaskCreate from "./pages/TaskCreate";
 import Balance from "./pages/Balance";
 import NotFound from "./pages/NotFound";
+import Help from "./pages/Help";
 
 // New pages
 import Dashboard from "./pages/Dashboard";
@@ -47,6 +48,7 @@ const App = () => (
             <Route path="/representative/profile/:id" element={<RepresentativeProfile />} />
             <Route path="/tasks/create" element={<TaskCreate />} />
             <Route path="/balance" element={<Balance />} />
+            <Route path="/help" element={<Help />} />
             
             {/* New routes */}
             <Route path="/dashboard" element={<Dashboard />} />
