@@ -78,6 +78,7 @@ const RepresentativeDetails = ({
             <SelectItem value="sr">Справедливая Россия</SelectItem>
             <SelectItem value="kprf">КПРФ</SelectItem>
             <SelectItem value="ldpr">ЛДПР</SelectItem>
+            <SelectItem value="nl">Новые люди</SelectItem>
             <SelectItem value="other">Другая</SelectItem>
             <SelectItem value="none">Беспартийный</SelectItem>
           </SelectContent>

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import { Input } from '@/components/ui/input';
@@ -60,6 +59,16 @@ const mockRepresentatives = [
     tasksTotal: 20,
     tasksCompleted: 15,
     rating: 4.8
+  },
+  { 
+    id: 6, 
+    name: "Смирнова Анна Викторовна", 
+    role: "Депутат городской думы", 
+    district: "Округ №4", 
+    party: "Новые люди",
+    tasksTotal: 8,
+    tasksCompleted: 5,
+    rating: 4.6
   },
 ];
 
