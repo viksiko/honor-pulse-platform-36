@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://honor-pulse-platform-89.lovable.app/
+**URL**: https://honor-pulse-platform-36.lovable.app/
 
 ## How can I edit this code?
 
