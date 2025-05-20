@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import ErrorBoundary from "./components/errors/ErrorBoundary";
 
 import Index from "./pages/Index";
 import Login from "./pages/Login";
@@ -16,6 +17,7 @@ import TaskCreate from "./pages/TaskCreate";
 import Balance from "./pages/Balance";
 import NotFound from "./pages/NotFound";
 import Help from "./pages/Help";
+import ServerError from "./pages/ServerError";
 
 // New pages
 import Dashboard from "./pages/Dashboard";
@@ -38,45 +40,49 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <AuthProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/register/representative" element={<RepresentativeRegister />} />
-            <Route path="/map" element={<Map />} />
-            <Route path="/representatives" element={<Representatives />} />
-            <Route path="/representative/profile/:id" element={<RepresentativeProfile />} />
-            <Route path="/tasks/create" element={<TaskCreate />} />
-            <Route path="/balance" element={<Balance />} />
-            <Route path="/help" element={<Help />} />
-            
-            {/* Dashboard routes */}
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<Blog />} />
-            <Route path="/messages" element={<MessageCenter />} />
-            <Route path="/representative/dashboard" element={<RepresentativeDashboard />} />
-            <Route path="/analytics" element={<Analytics />} />
-            
-            {/* Tasks management and statistics */}
-            <Route path="/representative/tasks" element={<RepresentativeTasks />} />
-            <Route path="/representative/statistics" element={<RepresentativeStatistics />} />
-            <Route path="/tasks" element={<Tasks />} />
-            
-            {/* Authentication callback routes */}
-            <Route path="/gosuslugi/callback" element={<GosuslugiCallback />} />
-            <Route path="/sber/auth" element={<SberCallback />} />
-            <Route path="/tinkoff/auth" element={<TinkoffCallback />} />
-            
-            {/* District details page */}
-            <Route path="/districts/:id" element={<DistrictDetails />} />
-            
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <ErrorBoundary>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/register/representative" element={<RepresentativeRegister />} />
+              <Route path="/map" element={<Map />} />
+              <Route path="/representatives" element={<Representatives />} />
+              <Route path="/representative/profile/:id" element={<RepresentativeProfile />} />
+              <Route path="/tasks/create" element={<TaskCreate />} />
+              <Route path="/balance" element={<Balance />} />
+              <Route path="/help" element={<Help />} />
+              
+              {/* Dashboard routes */}
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<Blog />} />
+              <Route path="/messages" element={<MessageCenter />} />
+              <Route path="/representative/dashboard" element={<RepresentativeDashboard />} />
+              <Route path="/analytics" element={<Analytics />} />
+              
+              {/* Tasks management and statistics */}
+              <Route path="/representative/tasks" element={<RepresentativeTasks />} />
+              <Route path="/representative/statistics" element={<RepresentativeStatistics />} />
+              <Route path="/tasks" element={<Tasks />} />
+              
+              {/* Authentication callback routes */}
+              <Route path="/gosuslugi/callback" element={<GosuslugiCallback />} />
+              <Route path="/sber/auth" element={<SberCallback />} />
+              <Route path="/tinkoff/auth" element={<TinkoffCallback />} />
+              
+              {/* District details page */}
+              <Route path="/districts/:id" element={<DistrictDetails />} />
+              
+              {/* Error pages */}
+              <Route path="/server-error" element={<ServerError />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </ErrorBoundary>
       </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
